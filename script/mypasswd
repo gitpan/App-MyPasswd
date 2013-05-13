@@ -1,0 +1,58 @@
+#!perl
+use strict;
+use warnings;
+use App::MyPasswd;
+
+my $mypasswd = App::MyPasswd->new->run(@ARGV);
+
+__END__
+
+=head1 NAME
+
+mypasswd - generate your password
+
+=head1 SYNOPSIS
+
+    $ mypasswd [options]
+
+=head2 OPTIONS
+
+    -s,  --salt          a string digits for generating password(default: blank)
+    -l,  --length        password length(default: 8)
+         --only-number   used only number string
+         --only-uc       used only upper case
+         --only-lc       used only lower case
+         --no-symbol     switch a symbol to number
+         --log           log file path of execute history
+         --show-input    show your inputed master password
+    -h,  --help          show this help
+    -v,  --version       show the version
+
+=head2 EXAMPLE
+
+To execute script and you input your C<master password>, then a password is generated.
+
+    $ mypasswd --salt example.com --length 8
+    Input master password:
+    Again, input same master password:
+    use this: SRGPNbcA
+
+=head1 AUTHOR
+
+Dai Okabayashi E<lt>bayashi@cpan.orgE<gt>
+
+
+=head1 SEE ALSO
+
+This script was inspired from below entry(in Japanese).
+<http://d.hatena.ne.jp/kazuhooku/20130509/1368071543>
+
+L<App::MyPasswd>
+
+=head1 LICENSE
+
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself. See L<perlartistic>.
+
+
+=cut

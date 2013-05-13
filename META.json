@@ -1,0 +1,55 @@
+{
+   "abstract" : "generate your password",
+   "author" : [
+      "Dai Okabayashi <bayashi@cpan.org>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.112150",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "App-MyPasswd",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "File::Temp" : 0,
+            "Test::More" : "0.88"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.38"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Digest::HMAC_SHA1" : 0,
+            "Getopt::Long" : "2.38",
+            "IO::Stty" : 0,
+            "POSIX" : 0,
+            "Pod::Usage" : 0,
+            "perl" : "5.008001"
+         }
+      }
+   },
+   "provides" : {
+      "App::MyPasswd" : {
+         "file" : "lib/App/MyPasswd.pm",
+         "version" : "0.01"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ],
+      "repository" : {
+         "url" : "http://github.com/bayashi/App-MyPasswd"
+      }
+   },
+   "version" : "0.01"
+}
