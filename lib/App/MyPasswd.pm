@@ -5,7 +5,7 @@ use Getopt::Long qw/GetOptionsFromArray/;
 use IO::Stty;
 use Digest::HMAC_SHA1 qw//;
 
-our $VERSION = 0.01;
+our $VERSION = 0.04;
 
 sub new {
     my $class = shift;
@@ -105,21 +105,29 @@ sub _only_case {
 sub _input_master_password {
     my $config = shift;
 
-    my($input, $input_again);
-
     local $SIG{INT} = sub { _stty('echo'); exit; };
     _stty('-echo');
 
-_INPUT:
-    print "Input master password:\n";
-    $input = <STDIN>;
-    chomp($input);
-    print "$input\n" if $config->{show_input};
+    my ($input, $input_again) = _prompt($config);
 
-    print "Again, input same master password:\n";
-    $input_again = <STDIN>;
-    chomp($input_again);
-    print "$input\n" if $config->{show_input};
+    _stty('echo');
+
+    $config->{master_password} = $input;
+}
+
+sub _prompt {
+    my $config = shift;
+
+    my ($input, $input_again);
+
+_INPUT:
+    $input       = _stdin($config, "Input master password:\n");
+    $input_again = _stdin($config, "Again, input same master password:\n");
+
+    unless ($input && $input_again) {
+        _stty('echo');
+        die "[Err] Empty input\n\n";
+    }
 
     if ($input ne $input_again) {
         print "[Err] Your passwords are NOT same. Try to input again.\n\n";
@@ -127,9 +135,17 @@ _INPUT:
         goto _INPUT;
     }
 
-    _stty('echo');
+    return($input, $input_again);
+}
 
-    $config->{master_password} = $input;
+sub _stdin {
+    my ($config, $msg) = @_;
+
+    print "Input master password:\n";
+    my $input = <STDIN>;
+    chomp($input);
+    print "$input\n" if $config->{show_input};
+    return $input;
 }
 
 sub _stty {
@@ -160,6 +176,7 @@ sub _merge_opt {
         },
     ) or _show_usage(2);
 
+    $config->{salt} = '' unless defined $config->{salt};
     $config->{length} ||= 8;
 }
 

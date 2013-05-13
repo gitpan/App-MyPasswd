@@ -39,7 +39,7 @@
    "provides" : {
       "App::MyPasswd" : {
          "file" : "lib/App/MyPasswd.pm",
-         "version" : "0.01"
+         "version" : "0.04"
       }
    },
    "release_status" : "stable",
@@ -51,5 +51,5 @@
          "url" : "http://github.com/bayashi/App-MyPasswd"
       }
    },
-   "version" : "0.01"
+   "version" : "0.04"
 }

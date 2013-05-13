@@ -17,7 +17,7 @@ name: App-MyPasswd
 provides:
   App::MyPasswd:
     file: lib/App/MyPasswd.pm
-    version: 0.01
+    version: 0.04
 requires:
   Digest::HMAC_SHA1: 0
   Getopt::Long: 2.38
@@ -28,4 +28,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/bayashi/App-MyPasswd
-version: 0.01
+version: 0.04

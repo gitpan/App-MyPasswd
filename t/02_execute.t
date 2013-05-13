@@ -9,17 +9,19 @@ my $mypasswd = App::MyPasswd->new;
 {
     my ($password, $output);
 
-    ($password, $output) = test_run("");
-    is $password, '+9sdGxiq';
-
-    ($password, $output) = test_run("", "--length" => 4);
-    is $password, '+9sd';
-
-    ($password, $output) = test_run("", "--salt" => "foo");
-    is $password, 'o8x3D8Az';
+    eval {
+        ($password, $output) = test_run("");
+    };
+    like $@, qr/^\[Err\] Empty input/;
 
     ($password, $output) = test_run("g");
     is $password, 't4U2qI++';
+
+    ($password, $output) = test_run("g", "--length" => 4);
+    is $password, 't4U2';
+
+    ($password, $output) = test_run("g", "--salt" => "foo");
+    is $password, 'Cf7t23Uw';
 
     ($password, $output) = test_run("g", "--only-number");
     is $password, '64523333';

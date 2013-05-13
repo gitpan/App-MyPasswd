@@ -27,7 +27,7 @@ my $mypasswd = App::MyPasswd->new;
     open my $rfh, '<', $filename;
     my $log = do { local $/; <$rfh> };
     close $rfh;
-    like $log, qr/--log $filename/;
+    like $log, qr/--log \Q$filename\E/;
 }
 
 {

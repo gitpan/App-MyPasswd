@@ -7,7 +7,7 @@ use App::MyPasswd;
 my $mypasswd = App::MyPasswd->new;
 
 {
-    open my $IN, '<', \"a\nb\na\na";
+    open my $IN, '<', \"a\nb\na\na\n";
     local *STDIN = *$IN;
 
     my $output = '';
